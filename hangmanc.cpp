@@ -9,15 +9,13 @@
 // define maximum number of incorrect attempts
 #define MAX_ATTEMPTS 6
 
-using namespace std;i
-
+using namespace std;
 
 // main class
 class HangmanGame
 {
 public:
-	// constructor to ini
-	HangmanGame()
+		HangmanGame()
 	{
 		srand(static_cast<unsigned int>(time(nullptr)));
 		secretWord = getRandomWord();
@@ -106,7 +104,7 @@ private:
 	string getRandomWord()
 	{
 		vector<string> words = {"apple", "banana", "cherry", "grape",
-								"kiwi"};
+								"kiwiApple, Banana, Mango, Orange, Papaya, Pineapple, Watermelon, Grapes, Strawberry, Blueberry, Raspberry, Cherry, Kiwi, Pomegranate, Guava, Peach, Pear, Plum, Lychee, Coconut, Lemon, Lime, Fig, Apricot, Dragon Fruit, Star Fruit, Passion Fruit, Blackcurrant, Gooseberry, Mulberry, Custard Apple, Jackfruit, Dates, Cranberry, Avocado, Persimmon, Tamarind, Cantaloupe, Honeydew, Sapodilla, Rambutan, Durian, Elderberry, Mangosteen, Bael, Acerola, Longan, Loquat, Breadfruit"};
 		int index = rand() % words.size();
 		return words[index];
 	}
@@ -158,62 +156,62 @@ private:
 		if (attemptsLeft == 5)
 		{
 			cout << " _____" << endl;
-			cout << " |	 |" << endl;
-			cout << " |	 O" << endl;
 			cout << " |" << endl;
-			cout << " |" << endl;
-			cout << " |" << endl;
-			cout << " |" << endl;
+			cout << " O" << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+			cout << " " << endl;
 		}
 		else if (attemptsLeft == 4)
 		{
 			cout << " _____" << endl;
-			cout << " |	 |" << endl;
-			cout << " |	 O" << endl;
-			cout << " |	 |" << endl;
 			cout << " |" << endl;
+			cout << " O" << endl;
 			cout << " |" << endl;
-			cout << " |" << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+			cout << " " << endl;
 		}
 		else if (attemptsLeft == 3)
 		{
 			cout << " _____" << endl;
-			cout << " |	 |" << endl;
-			cout << " |	 O" << endl;
-			cout << " | /|" << endl;
 			cout << " |" << endl;
-			cout << " |" << endl;
-			cout << " |" << endl;
+			cout << " O" << endl;
+			cout << "/|" << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+			cout << " " << endl;
 		}
 		else if (attemptsLeft == 2)
 		{
 			cout << " _____" << endl;
-			cout << " |	 |" << endl;
-			cout << " |	 O" << endl;
-			cout << " | /|\\" << endl;
 			cout << " |" << endl;
-			cout << " |" << endl;
-			cout << " |" << endl;
+			cout << " O" << endl;
+			cout << "/|\\" << endl;
+			cout << " " << endl;
+			cout << " " << endl;
+			cout << " " << endl;
 		}
 		else if (attemptsLeft == 1)
 		{
 			cout << " _____" << endl;
-			cout << " |	 |" << endl;
-			cout << " |	 O" << endl;
-			cout << " | /|\\" << endl;
-			cout << " | /" << endl;
 			cout << " |" << endl;
-			cout << " |" << endl;
+			cout << " O" << endl;
+			cout << "/|\\" << endl;
+			cout << " /" << endl;
+			cout << " " << endl;
+			cout << " " << endl;
 		}
 		else if (attemptsLeft == 0)
 		{
 			cout << " _____" << endl;
-			cout << " |	 |" << endl;
-			cout << " |	 O" << endl;
-			cout << " | /|\\" << endl;
-			cout << " | / \\" << endl;
 			cout << " |" << endl;
-			cout << " |" << endl;
+			cout << " O" << endl;
+			cout << "/|\\" << endl;
+			cout << "/ \\" << endl;
+			cout << " " << endl;
+			cout << " " << endl;
 		}
 	}
 };
