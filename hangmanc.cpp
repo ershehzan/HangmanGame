@@ -1,4 +1,4 @@
-// C++ program to implement the hangman game
+// C++ program to implement the Hangman game
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
@@ -6,222 +6,202 @@
 #include <string>
 #include <vector>
 
-// define maximum number of incorrect attempts
+// Define the maximum number of incorrect attempts allowed
 #define MAX_ATTEMPTS 6
 
 using namespace std;
 
-// main class
+// HangmanGame class definition
 class HangmanGame
 {
 public:
-		HangmanGame()
-	{
-		srand(static_cast<unsigned int>(time(nullptr)));
-		secretWord = getRandomWord();
-		currentWord = string(secretWord.length(), '_');
-		attemptsLeft = MAX_ATTEMPTS;
-	}
+    // Constructor to initialize game variables
+    HangmanGame()
+    {
+        srand(static_cast<unsigned int>(time(nullptr))); // Seed random number generator
+        secretWord = getRandomWord(); // Select a random word from the predefined list
+        currentWord = string(secretWord.length(), '_'); // Initialize the hidden word with underscores
+        attemptsLeft = MAX_ATTEMPTS; // Set the number of attempts
+    }
 
-	// function to start the game.
-	void play()
-	{
-		cout << "Welcome to Hangman!" << endl;
-		cout << "Category: Fruits" << endl;
-		cout << "You have " << attemptsLeft
-			 << " attempts to guess the fruit name."
-			 << endl;
+    // Function to start and control the game flow
+    void play()
+    {
+        cout << "Welcome to Hangman!" << endl;
+        cout << "Category: Fruits" << endl;
+        cout << "You have " << attemptsLeft << " attempts to guess the fruit name." << endl;
 
-		// the main game loop which will go on till the
-		// attempts are left or the game is won.
-		while (attemptsLeft > 0)
-		{
-			displayGameInfo();
-			char guess;
-			cout << "Guess a letter: ";
-			cin >> guess;
+        // Main game loop: continues until attempts are exhausted or the word is guessed
+        while (attemptsLeft > 0)
+        {
+            displayGameInfo(); // Show the current game state
+            char guess;
+            cout << "Guess a letter: ";
+            cin >> guess;
 
-			if (isalpha(guess))
-			{
-				guess = tolower(guess);
-				if (alreadyGuessed(guess))
-				{
-					cout << "You've already guessed that "
-							"letter."
-						 << endl;
-				}
-				else
-				{
-					bool correctGuess = updateCurrentWord(guess);
-					// if the guess is correct, we will
-					// update the word and check if the word
-					// is completely guessed or not
-					if (correctGuess)
-					{
-						cout << "Good guess!" << endl;
-						// if the word is completely
-						// guessed.
-						if (currentWord == secretWord)
-						{
-							displayGameInfo();
-							cout << "Congratulations! You "
-									"guessed the word: "
-								 << secretWord << endl;
-							return;
-						}
-					}
-					else
-					{
-						cout << "Incorrect guess." << endl;
-						attemptsLeft--;
-						drawHangman(attemptsLeft);
-					}
-				}
-			}
-			else
-			{
-				cout << "Please enter a valid letter."
-					 << endl;
-			}
-		}
+            // Check if the input is a valid alphabetic character
+            if (isalpha(guess))
+            {
+                guess = tolower(guess); // Convert to lowercase for consistency
 
-		if (attemptsLeft == 0)
-		{
-			displayGameInfo();
-			cout << "You've run out of attempts. The word "
-					"was: "
-				 << secretWord << endl;
-		}
-	}
+                // Check if the letter was already guessed
+                if (alreadyGuessed(guess))
+                {
+                    cout << "You've already guessed that letter." << endl;
+                }
+                else
+                {
+                    // Check if the guessed letter is in the secret word
+                    bool correctGuess = updateCurrentWord(guess);
+
+                    if (correctGuess)
+                    {
+                        cout << "Good guess!" << endl;
+                        // Check if the entire word has been guessed
+                        if (currentWord == secretWord)
+                        {
+                            displayGameInfo();
+                            cout << "Congratulations! You guessed the word: " << secretWord << endl;
+                            return; // End the game if guessed correctly
+                        }
+                    }
+                    else
+                    {
+                        cout << "Incorrect guess." << endl;
+                        attemptsLeft--; // Reduce attempts for incorrect guesses
+                        drawHangman(attemptsLeft); // Display hangman progress
+                    }
+                }
+            }
+            else
+            {
+                cout << "Please enter a valid letter." << endl;
+            }
+        }
+
+        // If no attempts are left, reveal the correct word
+        if (attemptsLeft == 0)
+        {
+            displayGameInfo();
+            cout << "You've run out of attempts. The word was: " << secretWord << endl;
+        }
+    }
 
 private:
-	string secretWord;
-	string currentWord;
-	int attemptsLeft;
-	vector<char> guessedLetters;
+    string secretWord;   // The word to be guessed
+    string currentWord;  // The word with guessed letters filled in
+    int attemptsLeft;    // Number of remaining incorrect guesses
+    vector<char> guessedLetters; // Stores guessed letters
 
-	// select random word from the predefined word
-	string getRandomWord()
-	{
-		vector<string> words = {"apple", "banana", "cherry", "grape",
-								"kiwiApple, Banana, Mango, Orange, Papaya, Pineapple, Watermelon, Grapes, Strawberry, Blueberry, Raspberry, Cherry, Kiwi, Pomegranate, Guava, Peach, Pear, Plum, Lychee, Coconut, Lemon, Lime, Fig, Apricot, Dragon Fruit, Star Fruit, Passion Fruit, Blackcurrant, Gooseberry, Mulberry, Custard Apple, Jackfruit, Dates, Cranberry, Avocado, Persimmon, Tamarind, Cantaloupe, Honeydew, Sapodilla, Rambutan, Durian, Elderberry, Mangosteen, Bael, Acerola, Longan, Loquat, Breadfruit"};
-		int index = rand() % words.size();
-		return words[index];
-	}
+    // Function to randomly select a word from a predefined list
+    string getRandomWord()
+    {
+        vector<string> words = {"apple", "banana", "mango", "orange", "papaya",
+                                "pineapple", "watermelon", "grapes", "strawberry",
+                                "blueberry", "raspberry", "cherry", "kiwi",
+                                "pomegranate", "guava", "peach", "pear", "plum",
+                                "lychee", "coconut", "lemon", "lime", "fig",
+                                "apricot", "dragonfruit", "starfruit",
+                                "passionfruit", "blackcurrant", "gooseberry",
+                                "mulberry", "custardapple", "jackfruit", "dates",
+                                "cranberry", "avocado", "persimmon", "tamarind",
+                                "cantaloupe", "honeydew", "sapodilla", "rambutan",
+                                "durian", "elderberry", "mangosteen", "bael",
+                                "acerola", "longan", "loquat", "breadfruit"};
+        
+        int index = rand() % words.size(); // Generate a random index
+        return words[index]; // Return a randomly selected word
+    }
 
-	// checking if the word is already guessed
-	bool alreadyGuessed(char letter)
-	{
-		return find(guessedLetters.begin(),
-					guessedLetters.end(), letter) != guessedLetters.end();
-	}
+    // Function to check if a letter has already been guessed
+    bool alreadyGuessed(char letter)
+    {
+        return find(guessedLetters.begin(), guessedLetters.end(), letter) != guessedLetters.end();
+    }
 
-	// updating the word after correct guess
-	bool updateCurrentWord(char letter)
-	{
-		bool correctGuess = false;
-		for (int i = 0; i < secretWord.length(); i++)
-		{
-			if (secretWord[i] == letter)
-			{
-				currentWord[i] = letter;
-				correctGuess = true;
-			}
-		}
-		guessedLetters.push_back(letter);
-		return correctGuess;
-	}
+    // Function to update the current word with a correct guess
+    bool updateCurrentWord(char letter)
+    {
+        bool correctGuess = false;
+        for (int i = 0; i < secretWord.length(); i++)
+        {
+            if (secretWord[i] == letter)
+            {
+                currentWord[i] = letter; // Reveal the guessed letter
+                correctGuess = true;
+            }
+        }
+        guessedLetters.push_back(letter); // Add letter to guessed letters list
+        return correctGuess;
+    }
 
-	// function to provide the info at particular point in
-	// the game
-	void displayGameInfo()
-	{
-		cout << "Word: " << currentWord << endl;
-		cout << "Attempts left: " << attemptsLeft << endl;
-		cout << "Guessed letters: ";
-		for (char letter : guessedLetters)
-		{
-			cout << letter << " ";
-		}
-		cout << endl;
-	}
+    // Function to display the current game state
+    void displayGameInfo()
+    {
+        cout << "Word: " << currentWord << endl;
+        cout << "Attempts left: " << attemptsLeft << endl;
+        cout << "Guessed letters: ";
+        for (char letter : guessedLetters)
+        {
+            cout << letter << " ";
+        }
+        cout << endl;
+    }
 
-	// function to progressively draw the hangman
-	void drawHangman(int attemptsLeft)
-	{
-		// Add your hangman drawing logic here
-		// For simplicity, you can print a static hangman
-		// ASCII art Modify this function to display the
-		// hangman as you like
-		if (attemptsLeft == 5)
-		{
-			cout << " _____" << endl;
-			cout << " |" << endl;
-			cout << " O" << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-		}
-		else if (attemptsLeft == 4)
-		{
-			cout << " _____" << endl;
-			cout << " |" << endl;
-			cout << " O" << endl;
-			cout << " |" << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-		}
-		else if (attemptsLeft == 3)
-		{
-			cout << " _____" << endl;
-			cout << " |" << endl;
-			cout << " O" << endl;
-			cout << "/|" << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-		}
-		else if (attemptsLeft == 2)
-		{
-			cout << " _____" << endl;
-			cout << " |" << endl;
-			cout << " O" << endl;
-			cout << "/|\\" << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-		}
-		else if (attemptsLeft == 1)
-		{
-			cout << " _____" << endl;
-			cout << " |" << endl;
-			cout << " O" << endl;
-			cout << "/|\\" << endl;
-			cout << " /" << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-		}
-		else if (attemptsLeft == 0)
-		{
-			cout << " _____" << endl;
-			cout << " |" << endl;
-			cout << " O" << endl;
-			cout << "/|\\" << endl;
-			cout << "/ \\" << endl;
-			cout << " " << endl;
-			cout << " " << endl;
-		}
-	}
+    // Function to progressively draw the hangman based on incorrect attempts
+    void drawHangman(int attemptsLeft)
+    {
+        // Simple ASCII art for different stages of the hangman
+        if (attemptsLeft == 5)
+        {
+            cout << " _____" << endl;
+            cout << " |" << endl;
+            cout << " O" << endl;
+        }
+        else if (attemptsLeft == 4)
+        {
+            cout << " _____" << endl;
+            cout << " |" << endl;
+            cout << " O" << endl;
+            cout << " |" << endl;
+        }
+        else if (attemptsLeft == 3)
+        {
+            cout << " _____" << endl;
+            cout << " |" << endl;
+            cout << " O" << endl;
+            cout << "/|" << endl;
+        }
+        else if (attemptsLeft == 2)
+        {
+            cout << " _____" << endl;
+            cout << " |" << endl;
+            cout << " O" << endl;
+            cout << "/|\\" << endl;
+        }
+        else if (attemptsLeft == 1)
+        {
+            cout << " _____" << endl;
+            cout << " |" << endl;
+            cout << " O" << endl;
+            cout << "/|\\" << endl;
+            cout << " /" << endl;
+        }
+        else if (attemptsLeft == 0)
+        {
+            cout << " _____" << endl;
+            cout << " |" << endl;
+            cout << " O" << endl;
+            cout << "/|\\" << endl;
+            cout << "/ \\" << endl;
+        }
+    }
 };
 
-// driver code
+// Driver function to start the game
 int main()
 {
-
-	HangmanGame game;
-	game.play();
-
-	return 0;
+    HangmanGame game; // Create an instance of HangmanGame
+    game.play(); // Start the game
+    return 0;
 }
