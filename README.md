@@ -114,7 +114,7 @@ g++ hangman.cpp -o hangman
 
 **Shehzan Khan**
 💻 *Aspiring Software Developer | C++ Enthusiast | Problem Solver*
-📫 [GitHub]([https://github.com/yourusername](https://github.com/ershehzan)) | [LinkedIn]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/shehzankhan/))
+📫 [GitHub](https://github.com/ershehzan) | [LinkedIn](https://www.linkedin.com/in/shehzankhan/)
 
 ---
 
