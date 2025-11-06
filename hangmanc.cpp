@@ -195,11 +195,11 @@ private:
 };
 
 // Driver function to start the game
-int main()
-{
+int main(){
     HangmanGame game; // Create an instance of HangmanGame
     game.play(); // Start the game
     return 0;
 }
+
 
 
