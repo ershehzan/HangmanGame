@@ -145,8 +145,7 @@ private:
     }
 
     // Function to progressively draw the hangman based on incorrect attempts
-    void drawHangman(int attemptsLeft)
-    {
+    void drawHangman(int attemptsLeft){
         // Simple ASCII art for different stages of the hangman
         if (attemptsLeft == 5)
         {
@@ -200,6 +199,7 @@ int main(){
     game.play(); // Start the game
     return 0;
 }
+
 
 
 
