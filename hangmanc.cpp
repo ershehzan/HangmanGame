@@ -5,15 +5,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
 // Define the maximum number of incorrect attempts allowed
 #define MAX_ATTEMPTS 6
-
 using namespace std;
-
 // HangmanGame class definition
-class HangmanGame
-{
+class HangmanGame{
 public:
     // Constructor to initialize game variables
     HangmanGame()
@@ -205,3 +201,4 @@ int main()
     game.play(); // Start the game
     return 0;
 }
+
