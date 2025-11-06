@@ -12,8 +12,8 @@ using namespace std;
 class HangmanGame{
 public:
     // Constructor to initialize game variables
-    HangmanGame()
-    {
+    HangmanGame() {
+        
         srand(static_cast<unsigned int>(time(nullptr))); // Seed random number generator
         secretWord = getRandomWord(); // Select a random word from the predefined list
         currentWord = string(secretWord.length(), '_'); // Initialize the hidden word with underscores
@@ -201,4 +201,5 @@ int main()
     game.play(); // Start the game
     return 0;
 }
+
 
