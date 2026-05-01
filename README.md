@@ -1,32 +1,31 @@
-# 🎯 Hangman Elite - Modern Web UI & Classic C++
+# 🎯 Hangman Elite - Premium Word Guessing Experience
 
 ## 🕹️ Overview
 
-**Hangman Elite** is a premium, full-featured word-guessing game. Originally built as a robust console application in **C++**, it has now been evolved into a stunning **Modern Web Experience** with high-fidelity graphics and smooth animations.
+**Hangman Elite** is a high-fidelity, categorized word-guessing game. Originally born as a C++ console application, it has been evolved into a **Stunning Modern Web Experience** featuring premium aesthetics, interactive themes, and a futuristic "Data Infiltration" narrative.
 
-The player tries to guess a randomly selected **fruit name** within a limited number of attempts before the hangman is fully drawn.
-
----
-
-## ✨ New: Hangman Elite Web UI
-
-Experience the game in a beautiful, modern interface featuring:
-
-*   **Premium Aesthetics**: Sleek dark mode with deep gradients and frosted-glass (glassmorphism) containers.
-*   **Dynamic SVG Hangman**: A progressive line-art gallows that draws itself as mistakes are made.
-*   **Dual-Input Support**: Full support for both on-screen virtual keyboard and physical keyboard input.
-*   **Fluid Animations**: Smooth CSS transitions, feedback vibrations for mistakes, and "pop" animations for correct guesses.
-*   **Responsive Design**: Fully optimized for mobile, tablet, and desktop screens.
+The player chooses a theme and attempts to decrypt the sequence (guess the word) within a limited number of attempts before the system lockdown (hangman completion).
 
 ---
 
-## ⚙️ Features (Both Versions)
+## ✨ Features
 
-✅ Random fruit selection from a comprehensive list of 40+ words.
-✅ Real-time tracking of all guessed letters.
-✅ Visual hangman progress (ASCII for C++, SVG for Web).
-✅ Prevents duplicate guesses with visual feedback.
-✅ Instant replay functionality.
+### 🎨 High-Fidelity UI/UX
+*   **Futuristic Design**: A sleek dark mode interface utilizing **Glassmorphism**, vibrant gradients, and **Space Grotesk** typography.
+*   **Dynamic SVG Visuals**: A progressive line-art hangman system that reacts in real-time to mistakes with a high-visibility white stroke.
+*   **Interactive Themes**: 5 unique categories with custom icons and color schemes:
+    *   🎬 **Movies**
+    *   🚀 **Sci-Fi**
+    *   🎮 **Gaming**
+    *   💻 **Technology**
+    *   🌲 **Nature**
+*   **Responsive Performance**: Fully optimized for mobile, tablet, and desktop with a focus on micro-animations and smooth transitions.
+
+### 🧠 Advanced Gameplay Logic
+*   **Streak Tracker**: Keep your win streak alive and monitor your performance across multiple sessions.
+*   **Dual-Input Support**: Use the on-screen futuristic keyboard or your physical keyboard for rapid guessing.
+*   **System Feedback**: Visual "shake" animations for incorrect guesses and immersive win/loss modals.
+*   **Instant Reset**: Quick "Quit Mission" and "Retry" options for seamless play.
 
 ---
 
@@ -34,10 +33,9 @@ Experience the game in a beautiful, modern interface featuring:
 
 ```bash
 📂 HangmanGame/
- ├── index.html        # Web UI structure & SEO
- ├── style.css         # Premium CSS design system
- ├── script.js         # ES6 Game logic & Animations
- ├── H.M.Game.cpp      # Classic C++ implementation
+ ├── index.html        # Core structure, SEO, and Premium Design System
+ ├── script.js         # Category Logic, Word Data, and Game Engine
+ ├── H.M.Game.cpp      # Classic C++ implementation (Console)
  ├── hangmanc.cpp      # Alternative C++ implementation
  └── README.md         # Documentation
 ```
@@ -47,7 +45,8 @@ Experience the game in a beautiful, modern interface featuring:
 ## 🚀 How to Run
 
 ### 🌐 Web Version (Recommended)
-Simply open **`index.html`** in any modern web browser (Chrome, Firefox, Edge, Safari). No installation or compilation required!
+Simply open **`index.html`** in any modern web browser. 
+*No installation, local server, or compilation required.*
 
 ### 💻 Classic C++ Version
 1. Compile using `g++`:
@@ -63,9 +62,10 @@ Simply open **`index.html`** in any modern web browser (Chrome, Firefox, Edge, S
 
 ## 🛠️ Technology Stack
 
-*   **Frontend**: HTML5, CSS3 (Vanilla), ES6 Javascript
-*   **Design**: Glassmorphism, CSS Flexbox/Grid, SVG Line Art
-*   **Backend (Classic)**: C++11, STL (Vector, String, Algorithm)
+*   **Frontend Engine**: HTML5, ES6+ Javascript
+*   **Styling**: Tailwind CSS (JIT Engine), Vanilla CSS
+*   **Aesthetics**: Glassmorphism, SVG Animation, Google Fonts (Space Grotesk, Inter)
+*   **Core Logic**: C++11 (Console versions)
 
 ---
 
@@ -77,12 +77,14 @@ Simply open **`index.html`** in any modern web browser (Chrome, Firefox, Edge, S
 
 ---
 
-## 🌟 Future Enhancements (Roadmap)
+## 🌟 Project Evolution (Roadmap)
 
 - [x] Create a stunning graphical web version
-- [ ] Add multiple difficulty levels
-- [ ] Include additional categories (Animals, Countries)
-- [ ] Implement global score tracking using LocalStorage
+- [x] Implement multiple themed categories
+- [x] Add win streak tracking
+- [ ] Add difficulty levels (Short vs. Long words)
+- [ ] Implement global leaderboard using Firebase or Supabase
+- [ ] Add immersive sound effects and background music
 
 ---
 

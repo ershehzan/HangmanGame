@@ -1,67 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hangman Elite - Premium Word Guessing Game</title>
-    <meta name="description" content="Experience the ultimate Hangman game with a premium design, smooth animations, and challenging fruit-themed words.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>HANGMAN ELITE - Premium Word Guessing Game</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#dce2f6",
+                        "surface-bright": "#323949",
+                        "surface-container-low": "#151b2a",
+                        "on-primary-fixed": "#1c0062",
+                        "surface-container-high": "#232a39",
+                        "on-surface-variant": "#c9c4d8",
+                        "primary-container": "#947dff",
+                        "error-container": "#93000a",
+                        "primary": "#cabeff",
+                        "surface-tint": "#cabeff",
+                        "outline-variant": "#484555",
+                        "primary-fixed-dim": "#cabeff",
+                        "error": "#ffb4ab",
+                        "tertiary": "#45dfa4",
+                        "tertiary-container": "#00a574",
+                        "inverse-surface": "#dce2f6",
+                        "inverse-primary": "#603ce2",
+                        "surface-variant": "#2e3544",
+                        "surface-dim": "#0c1321",
+                        "surface-container": "#19202e",
+                        "background": "#0c1321",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "on-tertiary-container": "#003120",
+                        "on-primary-container": "#2a0088",
+                        "surface-container-lowest": "#070e1c",
+                        "inverse-on-surface": "#2a3040",
+                        "on-error": "#690005",
+                        "on-tertiary": "#003825",
+                        "on-tertiary-fixed": "#002114",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed": "#e6deff",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "secondary-container": "#00cbe6",
+                        "on-secondary-container": "#00515d",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "on-secondary": "#00363e",
+                        "secondary-fixed": "#a2eeff",
+                        "surface-container-highest": "#2e3544",
+                        "on-primary-fixed-variant": "#4816cb",
+                        "tertiary-fixed": "#68fcbf",
+                        "on-background": "#dce2f6",
+                        "outline": "#938ea1",
+                        "on-secondary-fixed": "#001f25",
+                        "secondary": "#5de6ff",
+                        "surface": "#0c1321",
+                        "secondary-fixed-dim": "#2fd9f4",
+                        "on-primary": "#31009a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "16px",
+                        "key-gap": "8px",
+                        "section-margin": "40px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Space Grotesk"],
+                        "keyboard-key": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Space Grotesk"],
+                        "display-xl": ["Space Grotesk"],
+                        "label-bold": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "keyboard-key": ["20px", {"lineHeight": "1", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "display-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0c1321;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(96, 60, 226, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 203, 230, 0.15) 0px, transparent 50%);
+            min-height: 100vh;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .category-glow:hover {
+            box-shadow: 0 0 20px rgba(148, 125, 255, 0.3);
+            border-color: rgba(148, 125, 255, 0.5);
+            background: rgba(148, 125, 255, 0.08);
+        }
+        .key {
+            @apply glass-panel flex items-center justify-center p-3 rounded-lg transition-all duration-200 cursor-pointer active:scale-95;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+        }
+        .key.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .key.correct {
+            background: rgba(69, 223, 164, 0.2) !important;
+            color: #45dfa4 !important;
+            border-color: rgba(69, 223, 164, 0.5) !important;
+        }
+        .key.wrong {
+            background: rgba(255, 180, 171, 0.2) !important;
+            color: #ffb4ab !important;
+            border-color: rgba(255, 180, 171, 0.5) !important;
+        }
+        .letter-slot {
+            @apply w-10 h-14 border-b-2 border-white/20 flex items-center justify-center font-display-xl text-headline-lg text-white transition-all duration-300;
+        }
+        .letter-slot.revealed {
+            @apply border-primary text-primary;
+        }
+        .hangman-part {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            stroke: #ffffff;
+            stroke-width: 6;
+            stroke-linecap: round;
+            fill: none;
+        }
+        .hangman-part.visible {
+            opacity: 1;
+        }
+        .draw-line {
+            stroke: rgba(255, 255, 255, 0.6);
+            stroke-width: 4;
+            stroke-linecap: round;
+            fill: none;
+        }
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
-<body>
-    <div class="bg-blur"></div>
-    
-    <main class="game-container" id="game-container">
-        <header>
-            <h1 id="main-title">HANGMAN<span>ELITE</span></h1>
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-label">Category</span>
-                    <span class="stat-value" id="category">Fruits</span>
+<body class="font-body-md text-on-surface">
+    <!-- Top Navigation Anchor -->
+    <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-slate-950/20 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(124,92,255,0.2)]">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-violet-500 hover:text-white hover:scale-110 transition-transform cursor-pointer active:scale-95 duration-150" id="reset-game" data-icon="refresh">refresh</span>
+        </div>
+        <h1 class="font-['Space_Grotesk'] tracking-widest uppercase text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-cyan-400">HANGMAN ELITE</h1>
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-slate-400 hover:text-white hover:scale-110 transition-transform cursor-pointer active:scale-95 duration-150" data-icon="volume_up">volume_up</span>
+        </div>
+    </header>
+
+    <!-- Main Gameplay/Selection Area -->
+    <main class="flex flex-col items-center justify-center min-h-screen pt-24 pb-20 px-6">
+        
+        <!-- Selection Screen -->
+        <section id="selection-screen" class="w-full max-w-lg">
+            <div class="glass-panel w-full rounded-xl p-8 shadow-2xl relative">
+                <div class="mb-8 text-center">
+                    <h2 class="font-display-xl text-display-xl tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-violet-300 mb-2">CHOOSE YOUR THEME</h2>
+                    <p class="font-body-md text-on-surface-variant/70">SELECT A DATA STREAM TO INFILTRATE</p>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">Attempts</span>
-                    <span class="stat-value" id="attempts">6</span>
+                <div class="space-y-4" id="category-list">
+                    <!-- Categories will be rendered here -->
+                </div>
+                <!-- Decorative image -->
+                <div class="absolute -bottom-10 -right-10 opacity-5 pointer-events-none">
+                    <img alt="" class="w-64 h-64" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5-j3bUUhQyl2uGkUY66F8c-79IOXAPv6KgLXy1mWp_kZr8yeQt9LnZGSLXkjX5tHB62Bku4-L1SGn9YjJUfUyByFHfGNbjfT1-pySYKqvvTAahALiWWcJvDqSIlfYPGXBQpsx3cffU0CtrOcxT3Xiy3GxUe2MNuhmXU4RouhkQnoIIqtYp_k3a1rACY794RnUl0Fxw0xVz5OK6QfWJcaTITJo4G2jgmHRl3KBYbUTRXICVb5WNYCNsQ4OY83aVXxjeoJXSen4cqc"/>
                 </div>
             </div>
-        </header>
 
-        <section class="hangman-section">
-            <svg class="hangman-svg" viewBox="0 0 200 250">
-                <!-- Gallow -->
-                <path d="M20 230 L180 230" class="draw-line" /> <!-- Base -->
-                <path d="M50 230 L50 20" class="draw-line" /> <!-- Post -->
-                <path d="M50 20 L140 20" class="draw-line" /> <!-- Beam -->
-                <path d="M140 20 L140 50" class="draw-line" /> <!-- Rope -->
-                
-                <!-- Body Parts -->
-                <circle cx="140" cy="75" r="25" class="hangman-part" id="head" />
-                <line x1="140" y1="100" x2="140" y2="170" class="hangman-part" id="body" />
-                <line x1="140" y1="120" x2="110" y2="150" class="hangman-part" id="left-arm" />
-                <line x1="140" y1="120" x2="170" y2="150" class="hangman-part" id="right-arm" />
-                <line x1="140" y1="170" x2="110" y2="210" class="hangman-part" id="left-leg" />
-                <line x1="140" y1="170" x2="170" y2="210" class="hangman-part" id="right-leg" />
-            </svg>
+            <!-- Stats Preview -->
+            <div class="mt-12 w-full grid grid-cols-2 gap-4">
+                <div class="glass-panel rounded-lg p-4 flex flex-col gap-1 border-white/5">
+                    <span class="font-label-bold text-[10px] text-primary uppercase tracking-[0.2em]">Global Rank</span>
+                    <span class="font-headline-lg text-headline-lg text-white">#1,248</span>
+                </div>
+                <div class="glass-panel rounded-lg p-4 flex flex-col gap-1 border-white/5">
+                    <span class="font-label-bold text-[10px] text-secondary uppercase tracking-[0.2em]">Streak</span>
+                    <span class="font-headline-lg text-headline-lg text-white" id="streak-display">0 WINS</span>
+                </div>
+            </div>
         </section>
 
-        <section class="word-display" id="word-display">
-            <!-- Word underscores will be injected here -->
+        <!-- Game Screen -->
+        <section id="game-screen" class="w-full max-w-4xl flex flex-col items-center gap-8 hidden">
+            <div class="w-full flex justify-between items-center px-4">
+                <div class="flex flex-col">
+                    <span class="font-label-bold text-[10px] text-primary uppercase tracking-widest">Category</span>
+                    <span id="game-category" class="font-headline-md text-white">MOVIES</span>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span class="font-label-bold text-[10px] text-error uppercase tracking-widest">Attempts Left</span>
+                    <span id="attempts" class="font-headline-md text-white">6</span>
+                </div>
+            </div>
+
+            <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Hangman Visual -->
+                <div class="glass-panel rounded-2xl p-8 flex items-center justify-center min-h-[300px]">
+                    <svg class="w-full max-w-[250px] aspect-[4/5]" viewBox="0 0 200 250">
+                        <path d="M20 230 L180 230" class="draw-line" />
+                        <path d="M50 230 L50 20" class="draw-line" />
+                        <path d="M50 20 L140 20" class="draw-line" />
+                        <path d="M140 20 L140 50" class="draw-line" />
+                        
+                        <circle cx="140" cy="75" r="25" class="hangman-part" id="head" />
+                        <line x1="140" y1="100" x2="140" y2="170" class="hangman-part" id="body" />
+                        <line x1="140" y1="120" x2="110" y2="150" class="hangman-part" id="left-arm" />
+                        <line x1="140" y1="120" x2="170" y2="150" class="hangman-part" id="right-arm" />
+                        <line x1="140" y1="170" x2="110" y2="210" class="hangman-part" id="left-leg" />
+                        <line x1="140" y1="170" x2="170" y2="210" class="hangman-part" id="right-leg" />
+                    </svg>
+                </div>
+
+                <!-- Word & Keyboard -->
+                <div class="flex flex-col gap-12">
+                    <div id="word-display" class="flex flex-wrap gap-4 justify-center">
+                        <!-- Slots injected here -->
+                    </div>
+                    <div id="keyboard" class="grid grid-cols-7 sm:grid-cols-9 gap-2">
+                        <!-- Keys injected here -->
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="keyboard" id="keyboard">
-            <!-- On-screen keyboard will be injected here -->
-        </section>
-
-        <div class="modal-overlay" id="modal-overlay">
-            <div class="modal" id="modal">
-                <h2 id="modal-title">Game Over</h2>
-                <p id="modal-message">The word was: <strong id="secret-word-display"></strong></p>
-                <button class="btn-primary" id="play-again-btn">Play Again</button>
+        <!-- Modal -->
+        <div id="modal-overlay" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+            <div class="glass-panel rounded-2xl p-10 max-w-md w-full text-center border-white/20 shadow-2xl transform scale-90 transition-transform duration-300" id="modal">
+                <h2 id="modal-title" class="font-display-xl text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-violet-300">VICTORY</h2>
+                <p class="font-body-md text-on-surface-variant mb-8">The decrypted sequence was: <br/><strong id="secret-word-display" class="text-white text-2xl tracking-widest uppercase"></strong></p>
+                <button id="play-again-btn" class="w-full py-4 rounded-xl bg-primary text-on-primary-container font-headline-md hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">CONTINUE MISSION</button>
             </div>
         </div>
     </main>
+
+    <!-- Footer Content -->
+    <footer class="fixed bottom-0 left-0 w-full flex flex-col md:flex-row justify-between items-center px-8 py-4 gap-4 bg-slate-950/40 backdrop-blur-md border-t border-white/5">
+        <div class="flex gap-6 items-center">
+            <a class="font-['Space_Grotesk'] text-[10px] tracking-tight text-slate-500 hover:text-slate-300 transition-colors cursor-pointer flex items-center gap-1 uppercase" href="#">
+                <span class="material-symbols-outlined text-sm">settings</span> Settings
+            </a>
+            <a class="font-['Space_Grotesk'] text-[10px] tracking-tight text-slate-500 hover:text-slate-300 transition-colors cursor-pointer flex items-center gap-1 uppercase" href="#">
+                <span class="material-symbols-outlined text-sm">leaderboard</span> Leaderboard
+            </a>
+        </div>
+        <span class="font-['Space_Grotesk'] text-[10px] tracking-tight text-slate-500">© 2024 HANGMAN ELITE. ALL RIGHTS RESERVED.</span>
+        <div class="flex gap-6 items-center">
+            <a class="font-['Space_Grotesk'] text-[10px] tracking-tight text-slate-600 hover:text-slate-300 transition-colors cursor-pointer uppercase" href="#">Privacy</a>
+            <a class="font-['Space_Grotesk'] text-[10px] tracking-tight text-slate-600 hover:text-slate-300 transition-colors cursor-pointer uppercase" href="#">Terms</a>
+            <a class="font-['Space_Grotesk'] text-[10px] tracking-tight text-slate-600 hover:text-slate-300 transition-colors cursor-pointer uppercase" href="#">Support</a>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
