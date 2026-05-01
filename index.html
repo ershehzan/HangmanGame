@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Elite - Premium Word Guessing Game</title>
+    <meta name="description" content="Experience the ultimate Hangman game with a premium design, smooth animations, and challenging fruit-themed words.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-blur"></div>
+    
+    <main class="game-container" id="game-container">
+        <header>
+            <h1 id="main-title">HANGMAN<span>ELITE</span></h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Category</span>
+                    <span class="stat-value" id="category">Fruits</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Attempts</span>
+                    <span class="stat-value" id="attempts">6</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="hangman-section">
+            <svg class="hangman-svg" viewBox="0 0 200 250">
+                <!-- Gallow -->
+                <path d="M20 230 L180 230" class="draw-line" /> <!-- Base -->
+                <path d="M50 230 L50 20" class="draw-line" /> <!-- Post -->
+                <path d="M50 20 L140 20" class="draw-line" /> <!-- Beam -->
+                <path d="M140 20 L140 50" class="draw-line" /> <!-- Rope -->
+                
+                <!-- Body Parts -->
+                <circle cx="140" cy="75" r="25" class="hangman-part" id="head" />
+                <line x1="140" y1="100" x2="140" y2="170" class="hangman-part" id="body" />
+                <line x1="140" y1="120" x2="110" y2="150" class="hangman-part" id="left-arm" />
+                <line x1="140" y1="120" x2="170" y2="150" class="hangman-part" id="right-arm" />
+                <line x1="140" y1="170" x2="110" y2="210" class="hangman-part" id="left-leg" />
+                <line x1="140" y1="170" x2="170" y2="210" class="hangman-part" id="right-leg" />
+            </svg>
+        </section>
+
+        <section class="word-display" id="word-display">
+            <!-- Word underscores will be injected here -->
+        </section>
+
+        <section class="keyboard" id="keyboard">
+            <!-- On-screen keyboard will be injected here -->
+        </section>
+
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal" id="modal">
+                <h2 id="modal-title">Game Over</h2>
+                <p id="modal-message">The word was: <strong id="secret-word-display"></strong></p>
+                <button class="btn-primary" id="play-again-btn">Play Again</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
